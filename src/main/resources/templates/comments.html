@@ -5,8 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+<h1>评论</h1>
+<form action="/comment/post" method="post">
+    <input type="hidden" name="nickName" value="bmatch" />
+    <input type="hidden" name="songId" value="35847388" />
+    <input name="content" type="text" style="width: 80%;height: 100px;" placeholder="填写你的评论" />
+    <br />
+    <button type="submit">评论</button>
+</form>
 <h3>
-    //循环，第一个comment声明的是单个数据的变量名。
     <ul th:each="comment:${comments}">
         <li>
             <img th:src="${comment.icon}"/>
@@ -16,7 +23,7 @@
         </li>
         <li>
             <label>评论时间:</label>
-            <span th:text="${comment.commentTime}"></span>
+            <span th:text="${#dates.format(comment.commentTime,'yyyy-MM-dd HH:mm:ss')}"></span>
             <label>评论数:</label>
             <span th:text="${comment.likeNum}"></span>
         </li>
