@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <h1>评论</h1>
@@ -24,10 +25,34 @@
         <li>
             <label>评论时间:</label>
             <span th:text="${#dates.format(comment.commentTime,'yyyy-MM-dd HH:mm:ss')}"></span>
-            <label>评论数:</label>
-            <span th:text="${comment.likeNum}"></span>
+            <label>点赞数:</label>
+            <a href="#" th:data-id="${comment.id}" class="like-btn"><span th:text="${comment.likeNum}"></span></a>
         </li>
     </ul>
 </h3>
+
+<script>
+    $(function () {
+        $(".like-btn").on('click', function (e) {
+            e.preventDefault();
+            var self = $(this);
+            var commentId = self.data('id');
+            $.ajax({
+                url: "/comment/like",
+                method: "POST",
+                data: {
+                    songId: "35847388",
+                    commentId: commentId
+                },
+            cache: false
+        })
+        .done(function (data) {
+                self.html(data.likeNum);
+            });
+        });
+    });
+
+</script>
+
 </body>
 </html>

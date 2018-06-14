@@ -18,7 +18,8 @@ public class CommentPostControl {
         public String post (@RequestParam(value = "songId") String songId, Comment comment){
         Date commentTime = new Date();
         comment.setCommentTime(commentTime);
-
+        comment.setId(UUID.randomUUID().toString());
+//xxx-xxx-xxx-xxx,36位,获得的数全局唯一
         comments.computeIfAbsent(songId,k->new ArrayList<>()).add(comment);
         List<Comment> commentList = comments.get(songId);
         Collections.sort(commentList, new Comparator<Comment>() {

@@ -13,6 +13,16 @@ public class Comment {
     private Date commentTime;
     //点赞数
     private int likeNum;
+    //
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getIcon() {
         return icon;
