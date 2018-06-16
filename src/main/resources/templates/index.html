@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <img th:src="${song.albuImg}" />
 
 <h1 th:text="song.name"></h1>
+
+<a href="#" class="player-btn">播放</a>
+<audio id="player" style="display: none"; src="" controls="controls"></audio>
 
 <h3>
     <label>歌手:</label><span th:text="${song.singer}"></span>
@@ -23,6 +27,29 @@
 
 <div th:utext="${song.lyrics}"></div>
 
+<script>
+
+    $(function () {
+        $(".player-btn").on('click',function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url:"/song/music",
+                method:"GET",
+                data:{
+                    songId:"35847388"
+                },
+            cache: false
+            })
+            .done(function (data) {
+                $("#player").show();
+                $("#player").attr("src",data);
+                document.getElementById("player").play();
+            });
+        });
+    });
+
+</script>
 
 </body>
 </html>
