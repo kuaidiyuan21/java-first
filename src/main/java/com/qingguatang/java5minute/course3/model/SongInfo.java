@@ -12,7 +12,17 @@ public class SongInfo {
     //歌词
     private String lyrics;
     //专辑图片
-    private String albuImg;
+    private String albumImg;
+    //
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -54,11 +64,11 @@ public class SongInfo {
         this.lyrics = lyrics;
     }
 
-    public String getAlbuImg() {
-        return albuImg;
+    public String getAlbumImg() {
+        return albumImg;
     }
 
-    public void setAlbuImg(String albuImg) {
-        this.albuImg = albuImg;
+    public void setAlbumImg(String albuImg) {
+        this.albumImg = albuImg;
     }
 }
