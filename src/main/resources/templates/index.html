@@ -27,6 +27,33 @@
 
 <div th:utext="${song.lyrics}" class="song-lyrics"></div>
 
+
+<h1>评论</h1>
+<form action="/comment/post" method="post">
+    <input type="hidden" name="nickName" value="bmatch" />
+    <input type="hidden" name="songId" value="35847388" />
+    <input name="content" type="text" style="width: 80%;height: 100px;" placeholder="填写你的评论" />
+    <br />
+    <button type="submit">评论</button>
+</form>
+<h3>精彩评论</h3>
+<ul th:each="comment:${comments}">
+    <li>
+        <img th:src="${comment.icon}"/>
+        <span th:text="${comment.nickName}"></span>
+        :
+        <span th:text="${comment.content}"></span>
+    </li>
+    <li>
+        <label>评论时间:</label>
+        <span th:text="${#dates.format(comment.commentTime,'yyyy-MM-dd HH:mm:ss')}"></span>
+        <label>点赞数:</label>
+        <a href="#" th:data-id="${comment.id}" class="like-btn"><span th:text="${comment.likeNum}"></span></a>
+    </li>
+</ul>
+
+
+
 <h3>相似歌曲</h3>
 <ul>
     <li>
@@ -82,7 +109,26 @@
                     $('.song-singer').html(data.singer);
 
                 });
-        })
+        });
+
+
+        $(".like-btn").on('click', function (e) {
+            e.preventDefault();
+            var self = $(this);
+            var commentId = self.data('id');
+            $.ajax({
+                url: "/comment/like",
+                method: "POST",
+                data: {
+                    songId: "35847388",
+                    commentId: commentId
+                },
+                cache: false
+            })
+                .done(function (data) {
+                    self.html(data.likeNum);
+                });
+        });
     });
 
 </script>

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class CommentPostControl {
+public class commentPostControl {
 
         private static Map<String, List<Comment>> comments = new HashMap<>();
         @RequestMapping(value = "/comment/post")
@@ -32,7 +32,7 @@ public class CommentPostControl {
             }
         });
 
-        return "redirect:/comments";
+        return "redirect:/songinfo?songId="+songId;
         }
 
     public List<Comment> getComments(String songId){

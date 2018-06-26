@@ -1,7 +1,7 @@
 package com.qingguatang.java5minute.course4;
 
 import com.qingguatang.java5minute.course4.model.Comment;
-import com.qingguatang.java5minute.course5.CommentPostControl;
+import com.qingguatang.java5minute.course5.commentPostControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,7 +14,7 @@ import java.util.List;
 public class CommentControl {
 
     @Autowired
-    private CommentPostControl commentPostControl;
+    private commentPostControl commentPostControl;
 
     @RequestMapping(value = "/comments")
     public String comments(ModelMap modelMap){

@@ -2,7 +2,7 @@ package com.qingguatang.java5minute.course6;
 
 
 import com.qingguatang.java5minute.course4.model.Comment;
-import com.qingguatang.java5minute.course5.CommentPostControl;
+import com.qingguatang.java5minute.course5.commentPostControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +16,7 @@ import java.util.List;
 public class CommentLikeControl {
 
     @Autowired
-    private CommentPostControl commentPostControl;
+    private commentPostControl commentPostControl;
 
     @RequestMapping(value = "/comment/like")
     @ResponseBody
